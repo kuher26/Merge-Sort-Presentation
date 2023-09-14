@@ -19,14 +19,14 @@ public class MergeSort {
         int middle = arr.length / 2;
 
         // Create two subarrays, left and right
-        int[] left = new int[middle];
-        int[] right = new int[arr.length - middle];
+        int[] left = new int[middle]; //left is allocated memory for middle elements
+        int[] right = new int[arr.length - middle]; //right is allocated memory for the remaining elements in the original array (length - middle)
 
         // Copy data to left and right subarrays
-        for (int i = 0; i < middle; i++) {
-            left[i] = arr[i];
+        for (int i = 0; i < middle; i++) { //for loop to iterate over the indices of the left subarray (from 0 to middle - 1).
+            left[i] = arr[i]; //Since middle represents the length of the left subarray,  we copy elements from the beginning of the original array (arr) up to the middle index.
         }
-        for (int i = middle; i < arr.length; i++) {
+        for (int i = middle; i < arr.length; i++) { //repeat with the right subarray starting from middle until arr.length - 1 (length of right subarray)
             right[i - middle] = arr[i];
         }
 
