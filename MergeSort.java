@@ -1,63 +1,73 @@
+package org.example;
+
 import java.util.Arrays;
 
-public class MergeSort {
-
+public class Main {
     public static void main(String[] args) {
-        int[] array = {12, 11, 13, 5, 6, 7};
-        System.out.println("Unsorted array: " + Arrays.toString(array));
+        // create array and print it
+        int[] array = {8, 6, 2, 3, 7, 1, 4, 5};
+        System.out.println(Arrays.toString(array));
 
-        mergeSort(array);
-
-        System.out.println("Sorted array: " + Arrays.toString(array));
+        // call mergeSort to sort array and print sorted array
+        mergeSort(array, array.length);
+        System.out.println(Arrays.toString(array));
     }
 
-    public static void mergeSort(int[] arr) {
-        if (arr.length <= 1) {
-            return; // Base case: If the array has 1 or 0 elements, it's already sorted.
+    public static void mergeSort(int[] a, int n) {
+
+        if (n < 2) {
+            return;
         }
 
-        int middle = arr.length / 2;
+        // find the middle index of the array
+        int mid = n / 2;
 
-        // Create two subarrays, left and right
-        int[] left = new int[middle]; //left is allocated memory for middle elements
-        int[] right = new int[arr.length - middle]; //right is allocated memory for the remaining elements in the original array (length - middle)
+        // create two sub-arrays
+        // each sub-array contains half of the elements
+        int[] l = new int[mid]; //left is allocated memory for middle elements
+        int[] r = new int[n - mid]; //right is allocated memory for the remaining elements in the original array (length - mid)
 
-        // Copy data to left and right subarrays
-        for (int i = 0; i < middle; i++) { //for loop to iterate over the indices of the left subarray (from 0 to middle - 1).
-            left[i] = arr[i]; //Since middle represents the length of the left subarray,  we copy elements from the beginning of the original array (arr) up to the middle index.
+        // copy elements at the beginning of the main array to the left sub-array
+        for (int i = 0; i < mid; i++) { //for loop to iterate over the indices of the left subarray (from 0 to mid - 1).
+            l[i] = a[i]; //Since middle represents the length of the left subarray,  we copy elements from the beginning of the original array (arr) up to the middle index.
         }
-        for (int i = middle; i < arr.length; i++) { //repeat with the right subarray starting from middle until arr.length - 1 (length of right subarray)
-            right[i - middle] = arr[i];
+
+        // copy elements from the midpoint of the main array to the right sub-array
+        for (int i = mid; i < n; i++) {
+            r[i - mid] = a[i];
         }
 
-        // Recursively sort both subarrays
-        mergeSort(left);
-        mergeSort(right);
+        // make a recursive call to mergeSort passing the left and right sub-arrays
+        // this will continue to divide each sub-array in half
+        // until there are N sub-arrays each holding one element
+        mergeSort(l, mid);
+        mergeSort(r, n - mid);
 
-        // Merge the sorted subarrays
-        merge(arr, left, right);
+        // take the sub-arrays and merge them
+        merge(a, l, r, mid, n - mid);
     }
 
-    public static void merge(int[] arr, int[] left, int[] right) {
+    public static void merge(
+            int[] a, int[] l, int[] r, int left, int right) {
+
         int i = 0, j = 0, k = 0;
-
         // Merge elements from left and right subarrays back into the original array
-        while (i < left.length && j < right.length) {
-            if (left[i] <= right[j]) {
-                arr[k++] = left[i++];
-            } else {
-                arr[k++] = right[j++];
+        while (i < left && j < right) {
+            if (l[i] <= r[j]) {
+                a[k++] = l[i++];
+            }
+            else {
+                a[k++] = r[j++];
             }
         }
-
         // Copy any remaining elements from left subarray (if any)
-        while (i < left.length) {
-            arr[k++] = left[i++];
+        while (i < left) {
+            a[k++] = l[i++];
         }
-
         // Copy any remaining elements from right subarray (if any)
-        while (j < right.length) {
-            arr[k++] = right[j++];
+        while (j < right) {
+            a[k++] = r[j++];
         }
     }
+    
 }
