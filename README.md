@@ -16,9 +16,22 @@ Then the sorted subarrays are merged into one sorted array.
 
 ## Applications of Merge Sort:
 
-**Sorting large datasets:** Merge sort is particularly well-suited for sorting large datasets due to its guaranteed worst-case time complexity of O(n log n).
-External sorting: Merge sort is commonly used in external sorting, where the data to be sorted is too large to fit into memory.  
+**Sorting large datasets:** Merge sort is particularly well-suited for sorting large datasets due to its guaranteed worst-case time complexity of O(n log n).  
+**External sorting:** Merge sort is commonly used in external sorting, where the data to be sorted is too large to fit into memory.  
 **Custom sorting:** Merge sort can be adapted to handle different input distributions, such as partially sorted, nearly sorted, or completely unsorted data.
+
+### Time Complexity
+
+Number of steps required, in the worst-case scenario, as the number of elements double.
+
+| 2<sup>n</sup> | # elements | # steps | steps/element |
+|---------------|------------|---------|---------------|
+| 3             |      8     |    24   |       3       |
+| 4             |     16     |    64   |       4       |
+| 5             |     32     |   160   |       5       |
+| 6             |     64     |   384   |       6       |
+| 7             |     128    |   896   |       7       |
+
 Inversion Count Problem
 
 ## Advantages of Merge Sort:
@@ -29,4 +42,4 @@ Inversion Count Problem
 ## Drawbacks of Merge Sort:
 **Space complexity:** Merge sort requires additional memory to store the merged sub-arrays during the sorting process.     
 **Not in-place:** Merge sort is not an in-place sorting algorithm, which means it requires additional memory to store the sorted data. This can be a disadvantage in applications where memory usage is a concern.  
-**Not always optimal for small datasets:** For small datasets, Merge sort has a higher time complexity than some other sorting algorithms, such as insertion sort. This can result in slower performance for very small datasets.
+**Not always optimal for small datasets:** For small datasets, Merge sort has a higher time complexity than some other sorting algorithms, such as insertion sort. This can result in slower performance for very small datasets.  
